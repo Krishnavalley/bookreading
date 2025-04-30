@@ -1,0 +1,146 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3b5998;
+    padding: 10px 20px;
+    color: white;
+}
+
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+header nav a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+header nav a:hover {
+    text-decoration: underline;
+}
+
+header .logout-btn {
+    padding: 8px 15px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+header .logout-btn:hover {
+    background-color: #d32f2f;
+}
+
+/* Main Content */
+.main-content {
+    text-align: center;
+    padding: 40px;
+}
+
+.main-content h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.main-content p {
+    font-size: 18px;
+    margin-bottom: 40px;
+    color: #555;
+}
+
+/* Categories Section */
+.categories {
+    margin-bottom: 40px;
+}
+
+.category {
+    background-color: #3b5998;
+    color: white;
+    padding: 10px 25px;
+    margin: 5px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+    border: none;
+}
+
+.category:hover {
+    background-color: #2d4373;
+}
+
+/* Book Cards */
+.book-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.book-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    width: 220px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.book-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.book-card:hover {
+    transform: scale(1.05);
+}
+
+.book-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 15px;
+    color: #3b5998;
+}
+
+.book-description {
+    font-size: 14px;
+    color: #555;
+    margin-top: 10px;
+}
+
+.book-actions {
+    margin-top: 15px;
+}
+
+.book-actions button {
+    padding: 8px 15px;
+    background-color: #81c784;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.book-actions button:hover {
+    background-color: #66bb6a;
+}
