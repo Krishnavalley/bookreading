@@ -4,202 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Home - GyaanPath</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f7f9fc;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            flex-direction: column;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .category-container {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .category {
-            background-color: #3b5998;
-            color: white;
-            padding: 15px 30px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 18px;
-            transition: background-color 0.3s ease;
-        }
-
-        .category:hover {
-            background-color: #2d4373;
-        }
-
-        .book-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .book-card {
-            background-color: white;
-            border-radius: 8px;
-            padding: 20px;
-            width: 250px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .book-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .book-title {
-            font-size: 22px;
-            margin-bottom: 15px;
-            font-weight: 600;
-            color: #3b5998;
-        }
-
-        .book-description {
-            font-size: 14px;
-            color: #555;
-            margin-bottom: 15px;
-        }
-
-        .book-actions {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .book-actions button {
-            padding: 8px 15px;
-            font-size: 14px;
-            border: none;
-            border-radius: 4px;
-            background-color: #81c784;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .book-actions button:hover {
-            background-color: #66bb6a;
-        }
-
-        .header {
-            font-size: 32px;
-            font-weight: 700;
-            color: #3b5998;
-            margin-bottom: 20px;
-        }
-
-        .logout-btn {
-            padding: 10px 20px;
-            background-color: #f44336;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 20px;
-        }
-
-        .logout-btn:hover {
-            background-color: #d32f2f;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1 class="header">Welcome to GyaanPath</h1>
-        <button class="logout-btn" onclick="logout()">Logout</button>
+
+    <!-- Navigation Bar -->
+    <header>
+        <div class="logo">GyaanPath</div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Books</a>
+            <a href="#">Categories</a>
+            <a href="#">Profile</a>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>Welcome to GyaanPath</h1>
+        <p>Your spiritual and philosophical reading journey starts here.</p>
 
         <!-- Categories -->
-        <div class="category-container">
-            <div class="category" onclick="showCategory('spiritual')">Spiritual</div>
-            <div class="category" onclick="showCategory('philosophy')">Philosophy</div>
-            <div class="category" onclick="showCategory('history')">History</div>
-            <div class="category" onclick="showCategory('self-help')">Self-Help</div>
+        <div class="categories">
+            <button class="category" onclick="showCategory('spiritual')">Spiritual</button>
+            <button class="category" onclick="showCategory('philosophy')">Philosophy</button>
+            <button class="category" onclick="showCategory('history')">History</button>
+            <button class="category" onclick="showCategory('self-help')">Self-Help</button>
         </div>
 
-        <!-- Book List -->
+        <!-- Book Cards -->
         <div id="book-list" class="book-list">
-            <!-- Books will be dynamically loaded here -->
+            <!-- Books will be dynamically inserted here -->
         </div>
     </div>
 
-    <script>
-        // Example book data for different categories
-        const booksData = {
-            spiritual: [
-                { title: "The Bhagavad Gita", description: "A spiritual scripture of deep wisdom." },
-                { title: "Bhakti Yoga", description: "The path of love and devotion." }
-            ],
-            philosophy: [
-                { title: "The Republic", description: "A work by Plato on justice and the ideal state." },
-                { title: "Meditations", description: "The personal thoughts of Marcus Aurelius." }
-            ],
-            history: [
-                { title: "Sapiens", description: "A history of humanity from the stone age to the modern age." },
-                { title: "Guns, Germs, and Steel", description: "A study of human history and its impact." }
-            ],
-            'self-help': [
-                { title: "Atomic Habits", description: "A guide to building good habits and breaking bad ones." },
-                { title: "The Power of Now", description: "A spiritual guide to living in the present moment." }
-            ]
-        };
-
-        // Function to show books based on selected category
-        function showCategory(category) {
-            const bookListDiv = document.getElementById('book-list');
-            bookListDiv.innerHTML = ''; // Clear current list
-
-            const books = booksData[category];
-
-            books.forEach(book => {
-                const bookCard = document.createElement('div');
-                bookCard.classList.add('book-card');
-                
-                bookCard.innerHTML = `
-                    <div class="book-title">${book.title}</div>
-                    <div class="book-description">${book.description}</div>
-                    <div class="book-actions">
-                        <button onclick="markRead('${book.title}')">Mark as Read</button>
-                        <button onclick="bookmark('${book.title}')">Bookmark</button>
-                    </div>
-                `;
-
-                bookListDiv.appendChild(bookCard);
-            });
-        }
-
-        // Functions for book actions
-        function markRead(bookTitle) {
-            alert(bookTitle + " marked as read!");
-        }
-
-        function bookmark(bookTitle) {
-            alert(bookTitle + " bookmarked!");
-        }
-
-        // Logout function
-        function logout() {
-            window.location.href = "https://your-login-page-link.com"; // Replace with your login page link
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
